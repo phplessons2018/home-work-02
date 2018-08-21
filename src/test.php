@@ -4,7 +4,7 @@ function calcEverything($log, $numbers) //создаем 2 аргумента
 {
     $numbers = explode($log, $numbers); //переводим 2 аргумента в масив
 
-    echo implode($log, $numbers) . ' = '; // выводим переменную в виде строки
+
 
 
     $score = 0; //создаем числовую переменную
@@ -16,6 +16,8 @@ function calcEverything($log, $numbers) //создаем 2 аргумента
             $count = $value;
         }
     }
+
+    echo implode($log, $numbers) . ' = '; // выводим переменную в виде строки
 
     echo $score;
 
