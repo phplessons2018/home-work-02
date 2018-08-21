@@ -30,19 +30,19 @@
     */
 
 
-function task1( $stock, $bool)
+function task1($stock, $bool)
 {
-        if ($bool == false){
-            foreach ($stock as $key => $value) {
-            	echo '<p>' . $value . '<p>';
-            }
-			return ;
+    if ($bool == false) {
+        foreach ($stock as $key => $value) {
+            echo '<p>' . $value . '<p>';
         }
+        return ;
+    }
 
         return implode(',', $stock);
 }
 
-echo task1 (['a1','a2','a3'], false);
+echo task1(['a1','a2','a3'], false);
 
 
 
@@ -54,20 +54,15 @@ function calcEverything($log, $numbers)
     $count = 0;
 
     foreach ($numbers as $key => $value) {
-        if($log == '+') {
-
+        if ($log == '+') {
             $count += $value;
-        }
-        else {
+        } else {
                 $count = $value;
-            }
+        }
 
     }
 
     echo $count;
-
-
-
 }
 
 echo calcEverything('+', 1, 2, 3, 5.2);
@@ -84,19 +79,20 @@ function task3($i, $j)
         $table .= '<table border="1">';
         $table .= '<tr>';
         $table .= '<td></td>';
-        for($k = 1; $k <= $i; $k++) {
+        for ($k = 1; $k <= $i; $k++) {
             $table .= '<td>' . $k . '</td>';
 
         }
         $table .= '</tr>';
 
-        for($r = 1; $r <= $j; $r++) {
+        for ($r = 1; $r <= $j; $r++) {
             $table .= '<tr>';
             $table .= '<td>' . $r . '</td>';
-            for($l = 1; $l <= $j; $l++) {
+            for ($l = 1; $l <= $j; $l++) {
                 $table .= '<td>' . ($r * $l) . '</td>';
             }
-        $table .= '</tr>';
+
+            $table .= '</tr>';
         }
 
         echo $table;
@@ -119,6 +115,3 @@ echo '<br>';
 $myDate = mktime(0, 0, 0, 2, 24, 2016);
 
 echo date('d.m.Y H:i:s', $myDate);
-
-
-
