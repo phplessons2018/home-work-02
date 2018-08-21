@@ -49,8 +49,6 @@ echo task1 (['a1','a2','a3'], false);
 
 function calcEverything($log, $numbers)
 {
-    $numbers = implode($numbers);
-
     echo implode($log, $numbers) . ' = ';
 
     $count = 0;
