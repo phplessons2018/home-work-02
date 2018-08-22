@@ -1,91 +1,80 @@
 <?php
-/*
-
-    Задание #1
-    1. Функция должна принимать массив строк и выводить каждую строку в отдельном
-    параграфе (тег <p>)
-    2. Если в функцию передан второй параметр true, то возвращать (через return)
-    результат в виде одной объединенной строки.
-
-    Задание #2
-    1. Функция должна принимать переменное число аргументов.
-    2. Первым аргументом обязательно должна быть строка, обозначающая
-    арифметическое действие, которое необходимо выполнить со всеми
-    передаваемыми аргументами.
-    3. Остальные аргументы это целые и/или вещественные числа.
-    Пример вызова: calcEverything(‘+’, 1, 2, 3, 5.2);
-    Результат: 1 + 2 + 3 + 5.2 = 11.2
-
-    Задание #3(Использование рекурсии не обязательно)
-    1. Функция должна принимать два параметра – целые числа.
-    2. Если в функцию передали 2 целых числа, то функция должна отобразить таблицу
-    умножения размером со значения параметров, переданных в функцию. (Например
-    если передано 8 и 8, то нарисовать от 1х1 до 8х8). Таблица должна быть
-    выполнена с использованием тега <table>
-    3. В остальных случаях выдавать корректную ошибку
 
 
-
-
-    */
-
+//task 1
 
 function task1($stock, $bool)
 {
-    if ($bool == false) {
+    if ($bool == false) { // создаем условие, если булевый параметр false
         foreach ($stock as $key => $value) {
-            echo '<p>' . $value . '<p>';
+            echo '<p>' . $value . '<p>'; // каждый параметр масива оборачиваем в тег p
         }
-        return ;
+    } else {
+        return implode(',', $stock); // если true возвращаем строку
     }
 
-        return implode(',', $stock);
+
 }
 
 echo task1(['a1','a2','a3'], false);
 
+echo 'br';
 
+//task 2
 
-
-function calcEverything($log, $numbers)
+function task2($log) // Добавляем для первого аргумента переменную
 {
-    echo implode($log, $numbers) . ' = ';
+    $arr = func_get_args(); // Создаем массив из аргументов
 
-    $count = 0;
+    unset($arr[0]); // Удаляем первый символ из массива
 
-    foreach ($numbers as $key => $value) {
-        if ($log == '+') {
-            $count += $value;
+    echo implode($log, $arr) . ' = '; // Делаем массив строкой
+
+    $score = 0; // Создаем переменную в которой будем сохранять все вычисления
+    foreach ($arr as $key => $value) {
+        if ($key > 1) { // Условие, по которому опериции с первым символом не проводим
+            switch ($log) {
+                case '-':
+                    $score -= $value;
+                    break;
+                case '+':
+                    $score += $value;
+                    break;
+                case '*':
+                    $score *= $value;
+                    break;
+                case '/':
+                    $score /= $value;
+                    break;
+            }
         } else {
-                $count = $value;
+            $score = $value;
         }
-
     }
-
-    echo $count;
+    echo $score;
 }
 
-echo calcEverything('+', 1, 2, 3, 5.2);
+echo task2('+', 25, 2, 10, 5.4);
+
+echo '<br><br>';
 
 
-
-
+//task 3
 
 function task3($i, $j)
 {
 
-    if ((gettype($i) == 'integer') && (gettype($j) == 'integer')) {
-        $table = '';
+    if ((gettype($i) == 'integer') && (gettype($j) == 'integer')) { // проверяем на целые числа
+        $table = ''; // создаем переменную в которую поместим всю таблицу
         $table .= '<table border="1">';
         $table .= '<tr>';
         $table .= '<td></td>';
-        for ($k = 1; $k <= $i; $k++) {
+        for ($k = 1; $k <= $i; $k++) { // для ограничения цикла, сравниваем с первым аргументом
             $table .= '<td>' . $k . '</td>';
-
         }
         $table .= '</tr>';
 
-        for ($r = 1; $r <= $j; $r++) {
+        for ($r = 1; $r <= $j; $r++) { // для ограничения цикла, сравниваем со вторым аргументом
             $table .= '<tr>';
             $table .= '<td>' . $r . '</td>';
             for ($l = 1; $l <= $j; $l++) {
@@ -96,22 +85,45 @@ function task3($i, $j)
         }
 
         echo $table;
-
     } else {
         echo 'Введены не целые числа';
-        return;
     }
-
 }
 
 task3(8, 8);
 
 
+echo '<br><br>';
 
 
+//task 4
 
 echo date('d.m.Y H.i');
-echo '<br>';
+echo '<br><br>';
 $myDate = mktime(0, 0, 0, 2, 24, 2016);
 
 echo date('d.m.Y H:i:s', $myDate);
+
+echo '<br><br>';
+
+//task 5
+
+$string1 = 'Карл у Клары украл Кораллы';
+$string2 = 'Две бутылки лимонада';
+
+echo str_replace('К', '', $string1); // находим К и меняем на ничто
+
+echo '<br><br>';
+
+echo str_replace('Две', 'Три', $string2);  // находим Две и меняем Три
+
+echo '<br><br>';
+
+
+//task 6
+
+$createFile = "Hello again!";
+
+file_put_contents('test.txt', $createFile); // создаем файл
+
+echo file_get_contents('test.txt'); // выводим на экран
