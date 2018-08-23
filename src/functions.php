@@ -5,7 +5,7 @@
 
 function task1($stock, $bool)
 {
-    if ($bool == $bool) { // создаем условие, если булевый параметр false
+    if ($bool) { // создаем условие, если булевый параметр false
         foreach ($stock as $key => $value) {
             echo '<p>' . $value . '<p>'; // каждый параметр масива оборачиваем в тег p
         }
@@ -16,7 +16,7 @@ function task1($stock, $bool)
 
 }
 
-echo task1(['a1','a2','a3'], false);
+echo task1(['a1','a2','a3'], true);
 
 echo '<br>';
 
